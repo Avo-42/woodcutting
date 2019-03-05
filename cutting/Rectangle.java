@@ -1,6 +1,7 @@
 package cutting;
 
 public class Rectangle extends Shape {
+	// just writing junk here
 	
 	public enum Plane{
 		XY, XZ, YZ
@@ -63,8 +64,7 @@ public class Rectangle extends Shape {
 			a.setY(y+a.getY());
 			a.setZ(z+a.getZ());
 			rect.setPoint(i, a);
-		}
-		
+		} 
 	}
 	
 }
