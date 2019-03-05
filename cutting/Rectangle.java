@@ -56,11 +56,15 @@ public class Rectangle extends Shape {
 	}
 	
 	public void translateRectangle(Rectangle rect, double x, double y, double z) {
-		Rectangle temp = new Rectangle (rect.getCenter(), l, w, Plane.XY);
+		//Rectangle temp = new Rectangle (rect.getCenter(), l, w, Plane.XY);
 		for (int i = 0; i<4; i++) {
 			Point a = rect.getPoint(i);
-			a.set
+			a.setX(x+a.getX());
+			a.setY(y+a.getY());
+			a.setZ(z+a.getZ());
+			rect.setPoint(i, a);
 		}
+		
 	}
 	
 }
