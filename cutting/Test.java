@@ -1,7 +1,7 @@
 package cutting;
 import cutting.Rectangle.Plane;
 
-public class test {
+public class Test {
 
 	public static void main(String[] args) {
 		Point center = new Point (0,0,0);
