@@ -11,6 +11,12 @@ public class Shape{
 		
 	}
 	
+//	
+//	public void makeShape(Edge zero, Edge one) {
+//		Shape(4, ());
+//		
+//	}
+	
 	public int numOfPoints() {
 		return points.length;
 	}
