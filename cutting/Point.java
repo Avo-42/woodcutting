@@ -8,6 +8,13 @@ public class Point {
 		zVal = z;
 	}
 	
+	public boolean isSame(Point a, Point b) {
+		if (a.getX()!=b.getX()||a.getY()!=b.getY()||a.getZ()!=b.getZ()) {
+			return false;
+		}
+		return true;
+	}
+	
 	public void setX(double x) {
 		xVal = x;
 	}
