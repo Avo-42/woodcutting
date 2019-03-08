@@ -27,6 +27,12 @@ public class Point {
 		zVal = z;
 	}
 	
+	public void setPoint(double x, double y, double z) {
+		xVal=x;
+		yVal=y;
+		zVal=z;
+	}
+	
 	public double[] getCoord() {
 		double[] a = new double[3];
 		a[0] = xVal;
