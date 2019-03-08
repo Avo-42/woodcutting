@@ -24,19 +24,18 @@ public class Triangle extends Shape{
 			One = value; 
 		}else if(pointNum == 2){
 			Two = value;
-		}else {
-			system.out.prinln("point must be between 0 and 2");
 		}
+		//for some reason the system command is not recognized
+//		else {
+//			system.out.prinln("point must be between 0 and 2");
+//		}
 	}
 	
 	//for moving a shape a defined amount through space
 	public void translateTriangle(Triangle tri, double x, double y, double z) {
 		for (int i = 0; i<=2; i++) {
-			Point a = tri.getPoint(i);
-			a.setX(x+a.getX());
-			a.setY(y+a.getY());
-			a.setZ(z+a.getZ());
-			tri.setPoint(i, a);
+			Point temp = tri.getPoint(i);
+			translatePoint(temp, x, y, z);
 		}
 	}
 }

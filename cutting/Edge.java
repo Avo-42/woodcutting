@@ -13,8 +13,12 @@ public class Edge {
 //		return x[0];
 //	}
 	
-	public Point getEdgePoint(Edge edgeNum, int pointNum) {
-		if (pos == 0)return arr[0];
-		else return arr[1];
+	
+	
+	public Point getEdgePoint(int edgeNum) {
+		if (edgeNum == 0)return arr[0];
+		else if (edgeNum == 1) return arr[1];
+		//system command does not work for some reason
+		//else system.out.println("getEdgePoint will only take 0, or 1 as a valid input.");
 	}
 }

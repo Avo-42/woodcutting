@@ -11,11 +11,19 @@ public class Shape{
 		
 	}
 	
-//	
-//	public void makeShape(Edge zero, Edge one) {
-//		Shape(4, ());
-//		
-//	}
+	
+	public void makeShape(Edge a, Edge b) {
+		int indicator;
+		for(int i = 0; i<=1; i++){
+			if (indicator > 0)break;
+			for(int j = 0; j<=1; j++) {
+				 if (a.getEdgePoint(i) == b.getEdgePoint(j)) {
+					 indicator ++;
+				 }
+			}
+		}
+		if ()
+	}
 	
 	public int numOfPoints() {
 		return points.length;
