@@ -15,18 +15,18 @@ public class Edge {
 //	}
 	
 	//making an isSame method for edges so I just check for overlapping points easily
-	public boolean isSame(Edge a, Edge b) {
+	public boolean isSame(Edge b) {
 		//will return false if the edges share an edge
-		if (a.getEdgePoint(0)==b.getEdgePoint(0)&&a.getEdgePoint(1)==b.getEdgePoint(1)) {
+		if (this.getEdgePoint(0)==b.getEdgePoint(0)&&this.getEdgePoint(1)==b.getEdgePoint(1)) {
 			//a0=b0 and a1=b1, same edge
 			return false;
-		}else if (a.getEdgePoint(0)==b.getEdgePoint(1)&&a.getEdgePoint(1)==b.getEdgePoint(0)) {
+		}else if (this.getEdgePoint(0)==b.getEdgePoint(1)&&this.getEdgePoint(1)==b.getEdgePoint(0)) {
 			//a0=b1 and a1=b0, would be same edge just written in reverse order.
 			return false;
-		}else if (a.getEdgePoint(0)==b.getEdgePoint(0)||a.getEdgePoint(1)==b.getEdgePoint(1)) {
+		}else if (this.getEdgePoint(0)==b.getEdgePoint(0)||this.getEdgePoint(1)==b.getEdgePoint(1)) {
 			//only one shared point
 			return false;
-		}else if (a.getEdgePoint(0)==b.getEdgePoint(1)||a.getEdgePoint(1)==b.getEdgePoint(0)) {
+		}else if (this.getEdgePoint(0)==b.getEdgePoint(1)||this.getEdgePoint(1)==b.getEdgePoint(0)) {
 			//another shared point check
 			return false;
 		}else {

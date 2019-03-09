@@ -8,12 +8,20 @@ public class Point {
 		yVal = y;
 		zVal = z;
 	}
-
-	public boolean isSame(Point a, Point b) {
-		if (a.getX() != b.getX() || a.getY() != b.getY() || a.getZ() != b.getZ()) {
+	
+	//fix this so if a rounding mismatch occurs the points will still be counted as the same
+	//fixed it so that it no longer requires two points
+	public boolean isSame(Point b) {
+		if (this.getX() != b.getX() || this.getY() != b.getY() || this.getZ() != b.getZ()) {
 			return false;
 		}
 		return true;
+	}
+
+	public Point midpoint(Point a) {
+		Point center = new Point(0,0,0);
+		center.setPoint((this.getX()-a.getX())/2, (this.getY()-a.getY())/2, (this.getZ()-a.getZ())/2);
+		return center;
 	}
 
 	public void setX(double x) {

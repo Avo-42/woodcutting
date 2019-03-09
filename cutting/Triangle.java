@@ -3,22 +3,22 @@ package cutting;
 //import cutting.Rectangle.Plane;
  
 public class Triangle extends Shape{
-	public Point Zero, One, Two;
+	public Point Zero, one, two;
 	
 	public Triangle(Point[] points, Point center) {
 		super(3,center);
 		Zero = points[0];
-		One = points[1];
-		Two = points[2];
+		one = points[1];
+		two = points[2];
 	}
 	
 	public void pointShift(int pointNum, Point value) {
 		if (pointNum == 0) {
 			Zero = value;
 		}else if(pointNum == 1) {
-			One = value; 
+			one = value; 
 		}else if(pointNum == 2){
-			Two = value;
+			two = value;
 		}
 		//for some reason the system command is not recognized
 		//ignore that forgor to capitalize the s in System
