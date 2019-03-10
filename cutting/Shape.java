@@ -8,7 +8,6 @@ public class Shape{
 		//all three Cord variables are for the center coordinate
 		points = new Point[pointCount];
 		center = centerVal;
-		
 	}
 	
 	public Shape makeShape(Point[] points, Point center) {

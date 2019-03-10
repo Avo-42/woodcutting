@@ -1,24 +1,24 @@
 package cutting;
 
 public class Parallelogram extends Shape {
-	// just writing junk here
-	
+	//old stuff from rectangle
 //	public enum Plane{
 //		XY, XZ, YZ
 //	}
-	
-	double l, w;
-	
-	//plane is for telling which plane the rect will spawn in based on the enum xy = xy plane
-	//the rectangle will be centered around center, ie. points will be 1/2 L and 1/2 W away from the center
-	public Parallelogram(Point center, Point Zero, Point One, double x, double y, double z) {
-		super(4,center);
 		
+	public Parallelogram(Point center, Point zero, Point one, double x, double y, double z) {
+		super(4,center);
+		Point two = translatePoint(zero, x, y, z);
+		Point three = translatePoint(one, x, y, z);
+		this.setPoint(0, zero);
+		this.setPoint(1, one);
+		this.setPoint(2, two);
+		this.setPoint(3, three);
 	}
 	
-	public static Parallelogram makeParallelogram(Point Zero, Point One, double x, double y, double z) {
-		Point center = makeCenter(Zero, One, x, y, z);
-		Parallelogram temp = new Parallelogram(center, Zero, One, x, y, z);
+	public static Parallelogram makeParallelogram(Point zero, Point one, double x, double y, double z) {
+		Point center = makeCenter(zero, one, x, y, z);
+		Parallelogram temp = new Parallelogram(center, zero, one, x, y, z);
 		return temp;
 	}
 	
@@ -35,25 +35,7 @@ public class Parallelogram extends Shape {
 		return center;
 	}
 	
-//	public Rectangle makeRectangle(Edge a, double x, double y, double z, Point center) {
-//		Point[] points = new Point[4];
-//		Point zero = a.getEdgePoint(0);
-//		Point one = a.getEdgePoint(1);
-//		Point two = new Point(0,0,0), three = new Point(0,0,0);
-//		two.setPoint((zero.getX()+x), (zero.getY()+y), (zero.getZ()+z));
-//		three.setPoint((one.getX()+x), (one.getY()+y), (one.getZ()+z));
-//		//I would make it a rectangle if I could but this method allows you to create things outside of the three planes
-//		Shape temp = new Shape(4,center);
-//	}
-//	
-//	//conversion method to make a shape into a rectangle, assumes that your points make parallel edges
-//	private Rectangle makeRectangle(Shape shape, Point center) {
-//		
-//	}
-	
-	//planes will be removed from rect as they are no longer needed
-//	public Plane getPlane(Parallelogram rect) {
-//		return rect.getPlane(rect);
-//	}
+	public void rotateAboutPoint() {
 		
+	}
 }
