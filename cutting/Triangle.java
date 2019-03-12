@@ -12,6 +12,20 @@ public class Triangle extends Shape{
 		two = points[2];
 	}
 	
+	public void makeTriangle(Point center, Point a, Point b, Point c) {
+		this.setCenter(center);
+		this.setPoint(0, a);
+		this.setPoint(1, b);
+		this.setPoint(2, c);
+	}
+	
+	public void makeTriangle(Point center, Edge a, Point b) {
+		this.setCenter(center);
+		this.setPoint(0, a.getEdgePoint(0));
+		this.setPoint(1, a.getEdgePoint(1));
+		this.setPoint(2, b);
+	}
+	
 	public void pointShift(int pointNum, Point value) {
 		if (pointNum == 0) {
 			Zero = value;

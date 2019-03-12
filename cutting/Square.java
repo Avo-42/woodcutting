@@ -49,7 +49,7 @@ public class Square extends Shape{
 					double y = k*width/2 + center.getY();
 					double z = center.getZ();
 					Point temp = new Point(x, y, z);
-					setPoint(i, temp);
+					this.setPoint(i, temp);
 					i--;
 				}
 			}
@@ -61,7 +61,7 @@ public class Square extends Shape{
 					double y = j*width/2 + center.getY();
 					double z = k*width/2 + center.getZ();
 					Point temp = new Point(x, y, z);
-					setPoint(i, temp);
+					this.setPoint(i, temp);
 					i--;
 				}
 			}
@@ -73,7 +73,7 @@ public class Square extends Shape{
 					double y = center.getY();
 					double z = k*width/2 + center.getZ();
 					Point temp = new Point(x, y, z);
-					setPoint(i, temp);
+					this.setPoint(i, temp);
 				}
 			}
 	
