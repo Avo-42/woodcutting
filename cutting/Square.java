@@ -8,7 +8,7 @@ public class Square extends Shape{
 	double l, w;
 		
 	public Square (Point center, double width, Plane plane) {
-		super(4, center);
+		super(4, 4, center);
 		this.makeSquare(center, width, plane);
 	}
 	
@@ -23,6 +23,14 @@ public class Square extends Shape{
 			this.setPoint(1, a);
 			this.setPoint(2, b);
 			this.setPoint(3, c);
+			Edge zero = new Edge(point, a, this);
+			Edge one = new Edge(a, b, this);
+			Edge two = new Edge(b, c, this);
+			Edge three = new Edge(c, point, this);
+			this.addEdge(zero, 0);
+			this.addEdge(one, 1);
+			this.addEdge(two, 2);
+			this.addEdge(three, 3);
 		}else if(plane == Plane.XZ) {
 			Point a = new Point(point.getX()+width, point.getY(), point.getZ());
 			Point b = new Point(point.getX(), point.getY(), point.getZ()+width);

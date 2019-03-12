@@ -2,17 +2,36 @@ package cutting;
 
 public class Edge {
 	private Point[] arr = new Point[2];
+	private Shape[] shapes;
 
-	public Edge(Point zero, Point one, Shape[] shapes, Shape origin) {
+	public Edge(Point zero, Point one, Shape origin) {
 		arr[0] = zero;
 		arr[1] = one;
+		shapes = new Shape[1];
 		shapes[0] = origin;
 	}
 
-	//this code was replaced with getEdgePoint instead of me making getOne
-//	public Point getZero(Edge x) {
-//		return x[0];
-//	}
+	public void setEdgePoint(int pointNum, Point point){
+		arr[pointNum] = point;
+	}
+	
+	public void addShape(Shape shape) {
+		int a = shapes.length;
+		setShapes(a+1);
+		shapes[a] = shape;
+	}
+	
+	public Shape[] getShapes() {
+		return shapes;
+	}
+	
+	public Shape getShape(int shapeNum) {
+		return shapes[shapeNum];
+	}
+	
+	public void setShapes(int shapesSize) {
+		shapes = new Shape[shapesSize];
+	}
 	
 	//making an isSame method for edges so I just check for overlapping points easily
 	public boolean isSame(Edge b) {
