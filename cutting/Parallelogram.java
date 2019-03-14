@@ -8,10 +8,10 @@ public class Parallelogram extends Shape {
 		
 	public Parallelogram(Point center, Point zero, Point one, double x, double y, double z) {
 		super(4, 4, center);
-		Point two = translatePoint(zero, x, y, z);
-		Point three = translatePoint(one, x, y, z);
 		this.setPoint(0, zero);
 		this.setPoint(1, one);
+		Point two = translatePoint(zero, x, y, z);
+		Point three = translatePoint(one, x, y, z);
 		this.setPoint(2, two);
 		this.setPoint(3, three);
 	}

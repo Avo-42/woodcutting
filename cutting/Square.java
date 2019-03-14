@@ -49,13 +49,18 @@ public class Square extends Shape{
 	}
 	
 	public void makeSquare(Point center, double width, Plane plane) {
+		double a, b, c, d;
+		a = center.getX();
+		b = center.getY();
+		c = center.getZ();
+		d = width/2;
 		if (plane == Plane.XY ) {
 			int i = 3;
 			for (int j = -1; j<=1; j+=2) {
 				for (int k = -1; k<=1; k+=2) {
-					double x = j*width/2 + center.getX();
-					double y = k*width/2 + center.getY();
-					double z = center.getZ();
+					double x = j*d/2 + a;
+					double y = k*d + b;
+					double z = c;
 					Point temp = new Point(x, y, z);
 					this.setPoint(i, temp);
 					i--;
@@ -65,9 +70,9 @@ public class Square extends Shape{
 			int i = 3;
 			for (int j = -1; j<=1; j+=2) {
 				for (int k = -1; k<=1; k+=2) {
-					double x = center.getX();
-					double y = j*width/2 + center.getY();
-					double z = k*width/2 + center.getZ();
+					double x = a;
+					double y = j*d + b;
+					double z = k*d + c;
 					Point temp = new Point(x, y, z);
 					this.setPoint(i, temp);
 					i--;
@@ -77,14 +82,21 @@ public class Square extends Shape{
 			int i = 3;
 			for (int j = -1; j<=1; j+=2) {
 				for (int k = -1; k<=1; k+=2) {
-					double x = j*width/2 + center.getX();
-					double y = center.getY();
-					double z = k*width/2 + center.getZ();
+					double x = j*d + a;
+					double y = b;
+					double z = k*d + c;
 					Point temp = new Point(x, y, z);
 					this.setPoint(i, temp);
 				}
 			}
-	
 		}
+		Edge edgeA = new Edge(this.getPoint(0), this.getPoint(1));
+		Edge edgeB = new Edge(this.getPoint(1), this.getPoint(2));
+		Edge edgeC = new Edge(this.getPoint(2), this.getPoint(3));
+		Edge edgeD = new Edge(this.getPoint(3), this.getPoint(0));
+		this.addEdge(edgeA, 0);
+		this.addEdge(edgeB, 1);
+		this.addEdge(edgeC, 2);
+		this.addEdge(edgeD, 3);
 	}
 }
