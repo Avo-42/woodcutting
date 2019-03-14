@@ -37,7 +37,7 @@ public class Shape{
 			System.out.println("please input edges that do not share a point");
 			Shape temp = new Shape(0,0,center);
 			return temp;
-			//will return a false shape as it contains no points
+				//will return a false shape as it contains no points
 		}else {
 			Shape temp = new Shape(4, edgeCount, center);
 			temp.setPoint(0, a.getEdgePoint(0));
@@ -55,7 +55,7 @@ public class Shape{
 		}
 	}
 	
-	public int numOfPoints() {
+	public int pointsSize() {
 		return points.length;
 	}
 	
@@ -88,16 +88,26 @@ public class Shape{
 		point.setPoint(x, y, z);
 	}
 	
-	public static Point translatePoint(Point point, double x, double y, double z) {
+	// makes a new point translated according to the inputs
+	// use when making new points to be added
+	public static Point getTranslation(Point point, double x, double y, double z) {
+		x+=point.getX();
+		y+=point.getY();
+		z+=point.getZ();
+		Point result = new Point(x, y, z);
+		return result;
+	}
+	
+	// translates a point, no new points are created
+	public static void translatePoint(Point point, double x, double y, double z) {
 		x = x + point.getX();
 		y = y + point.getY();
 		z = z + point.getZ();
-		Point newPoint = new Point(x, y, z);
-		return newPoint;
+		point.setPoint(x, y, z);
 	}
 	
 	public void translateShape(Shape shape, double x, double y, double z) {
-		for(int i = 0; i<=shape.numOfPoints(); i++) {
+		for(int i = 0; i<=shape.pointsSize(); i++) {
 			translatePoint(shape.getPoint(i), x, y, z);
 		}
 	}
