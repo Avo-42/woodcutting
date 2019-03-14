@@ -36,8 +36,5 @@ public class Parallelogram extends Shape {
 		return center;
 	}
 	
-	//to be made
-	public void rotateAboutPoint(Point about, double angle) {
-		
-	}
+	//rotate is too general a method to only be in parallelogram
 }

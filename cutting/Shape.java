@@ -1,4 +1,5 @@
 package cutting;
+import java.math.*;
 
 public class Shape{
 	private Point[] points;
@@ -55,6 +56,34 @@ public class Shape{
 		}
 	}
 	
+	public enum Plane{
+		XY, XZ, YZ
+	}
+	
+	//there will only be a rotate shape method b/c rotating a creation will be useless and edges rotating is not very impactful
+	//it will be assumed that the point center will be the shapes center but it will not be enforced so that if the user wants they can translate the shape about another point
+	public void rotate(Shape shape, Plane plane, Point center, double angle) {
+		if (plane == Plane.XY) {
+			for(int i = 0; i<=shape.pointsSize(); i++) {
+				double x = (shape.getPoint(i).getX() - center.getX())*Math.cos(angle);
+				double y = (shape.getPoint(i).getY() - center.getY())*Math.sin(angle);
+				translatePoint(shape.getPoint(i), x, y, 0);
+			}
+		}else if(plane == Plane.XZ) {
+			for(int i = 0; i<=shape.pointsSize(); i++) {
+				double x = (shape.getPoint(i).getX() - center.getX())*Math.cos(angle);
+				double z = (shape.getPoint(i).getZ() - center.getZ())*Math.sin(angle);
+				translatePoint(shape.getPoint(i), x, 0, z);
+			}
+		}else{
+			for(int i = 0; i<=shape.pointsSize(); i++) {
+				double y = (shape.getPoint(i).getY() - center.getY())*Math.cos(angle);
+				double z = (shape.getPoint(i).getZ() - center.getZ())*Math.sin(angle);
+				translatePoint(shape.getPoint(i), 0, y, z);
+			}
+		}
+	}
+	
 	public int pointsSize() {
 		return points.length;
 	}
@@ -78,14 +107,6 @@ public class Shape{
 	//enter values for each change in dimension required for every translate method.
 	public void translateCenter(double x, double y, double z) {
 		translatePoint(center, x, y, z);
-	}
-	
-	//this will remain in Shape b/c otherwise translate center and translate shape will not work, as shape does not extend point
-	public static void translateThisPoint(Point point, double x, double y, double z) {
-		x = x + point.getX();
-		y = y + point.getY();
-		z = z + point.getZ();
-		point.setPoint(x, y, z);
 	}
 	
 	// makes a new point translated according to the inputs
