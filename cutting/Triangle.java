@@ -3,11 +3,11 @@ package cutting;
 //import cutting.Rectangle.Plane;
  
 public class Triangle extends Shape{
-	public Point Zero, one, two;
+	public Point zero, one, two;
 	
 	public Triangle(Point[] points, Point center) {
 		super(3, 3, center);
-		Zero = points[0];
+		zero = points[0];
 		one = points[1];
 		two = points[2];
 	}
@@ -28,7 +28,7 @@ public class Triangle extends Shape{
 	
 	public void pointShift(int pointNum, Point value) {
 		if (pointNum == 0) {
-			Zero = value;
+			zero = value;
 		}else if(pointNum == 1) {
 			one = value; 
 		}else if(pointNum == 2){

@@ -1,9 +1,9 @@
 package cutting;
 
 public class Square extends Shape{
-	public enum Plane{
-		XY, XZ, YZ
-	}
+//	public enum Plane{
+//		XY, XZ, YZ
+//	}
 
 	double l, w;
 		
