@@ -23,10 +23,10 @@ public class Square extends Shape{
 			this.setPoint(1, a);
 			this.setPoint(2, b);
 			this.setPoint(3, c);
-			Edge zero = new Edge(point, a, this);
-			Edge one = new Edge(a, b, this);
-			Edge two = new Edge(b, c, this);
-			Edge three = new Edge(c, point, this);
+			Edge zero = new Edge(point, a);
+			Edge one = new Edge(a, b);
+			Edge two = new Edge(b, c);
+			Edge three = new Edge(c, point);
 			this.addEdge(zero, 0);
 			this.addEdge(one, 1);
 			this.addEdge(two, 2);

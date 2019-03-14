@@ -6,7 +6,7 @@ public class Triangle extends Shape{
 	public Point Zero, one, two;
 	
 	public Triangle(Point[] points, Point center) {
-		super(3,center);
+		super(3, 3, center);
 		Zero = points[0];
 		one = points[1];
 		two = points[2];

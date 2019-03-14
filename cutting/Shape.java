@@ -17,12 +17,12 @@ public class Shape{
 			a.setPoint(i, points[i]);
 		}
 		for (int i = 1; i <=(edgeCount-1); i ++) {
-			Edge edge = new Edge(points[i-1], points[i], this);
+			Edge edge = new Edge(points[i-1], points[i]);
 			this.addEdge(edge, i-1);
 			//this will add all but one of the edges to edges[]
 		}
 		// I am assuming that edgeCount and pointCount are equal here, adds the last edge, hence the name last.
-		Edge last = new Edge (points[0], points[edgeCount-1], this);
+		Edge last = new Edge (points[0], points[edgeCount-1]);
 		this.addEdge(last, edgeCount);
 		return a;
 	}
@@ -47,8 +47,8 @@ public class Shape{
 			edges[0] = a;
 			edges[2] = b;
 			//making a note right here b/c depending on how makeShape(point[]) is used this may make a diagonal edge, can't think of an easy fix.
-			Edge c = new Edge(a.getEdgePoint(1), b.getEdgePoint(1), this);
-			Edge d= new Edge(b.getEdgePoint(0), a.getEdgePoint(0), this);
+			Edge c = new Edge(a.getEdgePoint(1), b.getEdgePoint(1));
+			Edge d= new Edge(b.getEdgePoint(0), a.getEdgePoint(0));
 			edges[1] = c;
 			edges[3] = d;
 			return temp;
