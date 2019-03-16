@@ -1,5 +1,4 @@
 package cutting;
-import java.math.*;
 
 public class Shape{
 	private Point[] points;
@@ -32,28 +31,32 @@ public class Shape{
 		edges[edgeNum] = edge;
 	}
 	
-	public Shape makeShape(Edge a, Edge b, Point center, int edgeCount) {
+	public Shape makeShape(Edge edgeOne, Edge edgeTwo, Point center, int edgeCount) {
 		//this class will take two edges and make a shape out of them
-		if (a.isSame(b)==false) {
+		if (edgeOne.isSame(edgeTwo)==false) {
 			System.out.println("please input edges that do not share a point");
 			Shape temp = new Shape(0,0,center);
 			return temp;
 				//will return a false shape as it contains no points
 		}else {
 			Shape temp = new Shape(4, edgeCount, center);
-			temp.setPoint(0, a.getEdgePoint(0));
-			temp.setPoint(1, a.getEdgePoint(1));
-			temp.setPoint(2, b.getEdgePoint(0));
-			temp.setPoint(4, b.getEdgePoint(1));
-			edges[0] = a;
-			edges[2] = b;
+			temp.setPoint(0, edgeOne.getEdgePoint(0));
+			temp.setPoint(1, edgeOne.getEdgePoint(1));
+			temp.setPoint(2, edgeTwo.getEdgePoint(0));
+			temp.setPoint(4, edgeTwo.getEdgePoint(1));
+			edges[0] = edgeOne;
+			edges[2] = edgeTwo;
 			//making a note right here b/c depending on how makeShape(point[]) is used this may make a diagonal edge, can't think of an easy fix.
-			Edge c = new Edge(a.getEdgePoint(1), b.getEdgePoint(1));
-			Edge d= new Edge(b.getEdgePoint(0), a.getEdgePoint(0));
+			Edge c = new Edge(edgeOne.getEdgePoint(1), edgeTwo.getEdgePoint(1));
+			Edge d= new Edge(edgeTwo.getEdgePoint(0), edgeOne.getEdgePoint(0));
 			edges[1] = c;
 			edges[3] = d;
 			return temp;
 		}
+	}
+	
+	public double dotProduct(Point b) {
+		double x = 
 	}
 	
 	public enum Plane{
@@ -88,12 +91,12 @@ public class Shape{
 		return points.length;
 	}
 	
-	public Point getPoint(int a) {
-		return points[a];
+	public Point getPoint(int pointNumber) {
+		return points[pointNumber];
 	}
 	
-	public void setPoint(int pos,Point val) {
-		points[pos] = val;
+	public void setPoint(int pointPosition,Point point) {
+		points[pointPosition] = point;
 	}
 	
 	public Point getCenter() {

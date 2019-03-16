@@ -12,11 +12,11 @@ public class Triangle extends Shape{
 		two = points[2];
 	}
 	
-	public void makeTriangle(Point center, Point a, Point b, Point c) {
+	public void makeTriangle(Point center, Point pointOne, Point pointTwo, Point pointThree) {
 		this.setCenter(center);
-		this.setPoint(0, a);
-		this.setPoint(1, b);
-		this.setPoint(2, c);
+		this.setPoint(0, pointOne);
+		this.setPoint(1, pointTwo);
+		this.setPoint(2, pointThree);
 	}
 	
 	public void makeTriangle(Point center, Edge a, Point b) {

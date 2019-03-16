@@ -1,11 +1,6 @@
 package cutting;
 
 public class Square extends Shape{
-//	public enum Plane{
-//		XY, XZ, YZ
-//	}
-
-	double l, w;
 		
 	public Square (Point center, double width, Plane plane) {
 		super(4, 4, center);
@@ -38,6 +33,14 @@ public class Square extends Shape{
 			this.setPoint(1, a);
 			this.setPoint(2, b);
 			this.setPoint(3, c);
+			Edge zero = new Edge(point, a);
+			Edge one = new Edge(a, b);
+			Edge two = new Edge(b, c);
+			Edge three = new Edge(c, point);
+			this.addEdge(zero, 0);
+			this.addEdge(one, 1);
+			this.addEdge(two, 2);
+			this.addEdge(three, 3);
 		}else {
 			Point a = new Point(point.getX(), point.getY()+width, point.getZ());
 			Point b = new Point(point.getX(), point.getY(), point.getZ()+width);
@@ -45,6 +48,14 @@ public class Square extends Shape{
 			this.setPoint(1, a);
 			this.setPoint(2, b);
 			this.setPoint(3, c);
+			Edge zero = new Edge(point, a);
+			Edge one = new Edge(a, b);
+			Edge two = new Edge(b, c);
+			Edge three = new Edge(c, point);
+			this.addEdge(zero, 0);
+			this.addEdge(one, 1);
+			this.addEdge(two, 2);
+			this.addEdge(three, 3);
 		}
 	}
 	

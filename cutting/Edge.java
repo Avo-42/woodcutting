@@ -1,15 +1,15 @@
 package cutting;
 
 public class Edge {
-	private Point[] arr = new Point[2];
+	private Point[] points = new Point[2];
 	
-	public Edge(Point zero, Point one) {
-		arr[0] = zero;
-		arr[1] = one;
+	public Edge(Point pointZero, Point pointOne) {
+		points[0] = pointZero;
+		points[1] = pointOne;
 	}
 
 	public void setEdgePoint(int pointNum, Point point){
-		arr[pointNum] = point;
+		points[pointNum] = point;
 	}
 	
 	//making an isSame method for edges so I just check for overlapping points easily
@@ -36,9 +36,9 @@ public class Edge {
 	public Point getEdgePoint(int edgeNum) {
 		assert edgeNum >=0 && edgeNum <=1: "Inputs for getEdgePoint can only be a 0 or a 1.";
 		if (edgeNum == 0) {
-			return arr[0];
+			return points[0];
 		}else {
-			return arr[1];
+			return points[1];
 		}
 	}
 }
