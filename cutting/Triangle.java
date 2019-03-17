@@ -19,11 +19,11 @@ public class Triangle extends Shape{
 		this.setPoint(2, pointThree);
 	}
 	
-	public void makeTriangle(Point center, Edge a, Point b) {
+	public void makeTriangle(Point center, Edge edge, Point point) {
 		this.setCenter(center);
-		this.setPoint(0, a.getEdgePoint(0));
-		this.setPoint(1, a.getEdgePoint(1));
-		this.setPoint(2, b);
+		this.setPoint(0, edge.getEdgePoint(0));
+		this.setPoint(1, edge.getEdgePoint(1));
+		this.setPoint(2, point);
 	}
 	
 	public void pointShift(int pointNum, Point value) {
@@ -35,7 +35,7 @@ public class Triangle extends Shape{
 			two = value;
 		}
 		else {
-			System.out.println("point must be between 0 and 2");
+			System.out.println("pointNum must be between 0 and 2");
 		}
 	}
 	

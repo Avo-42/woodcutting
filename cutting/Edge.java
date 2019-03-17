@@ -7,29 +7,29 @@ public class Edge {
 		points[0] = pointZero;
 		points[1] = pointOne;
 	}
-
+	
 	public void setEdgePoint(int pointNum, Point point){
 		points[pointNum] = point;
 	}
 	
 	//making an isSame method for edges so I just check for overlapping points easily
-	public boolean isSame(Edge b) {
+	public boolean hasOverlap(Edge otherPoint) {
 		//will return false if the edges share an edge
-		if (this.getEdgePoint(0)==b.getEdgePoint(0)&&this.getEdgePoint(1)==b.getEdgePoint(1)) {
+		if (getEdgePoint(0)==otherPoint.getEdgePoint(0)&&getEdgePoint(1)==otherPoint.getEdgePoint(1)) {
 			//a0=b0 and a1=b1, same edge
-			return false;
-		}else if (this.getEdgePoint(0)==b.getEdgePoint(1)&&this.getEdgePoint(1)==b.getEdgePoint(0)) {
+			return true;
+		}else if (getEdgePoint(0)==otherPoint.getEdgePoint(1)&&getEdgePoint(1)==otherPoint.getEdgePoint(0)) {
 			//a0=b1 and a1=b0, would be same edge just written in reverse order.
-			return false;
-		}else if (this.getEdgePoint(0)==b.getEdgePoint(0)||this.getEdgePoint(1)==b.getEdgePoint(1)) {
+			return true;
+		}else if (getEdgePoint(0)==otherPoint.getEdgePoint(0)||getEdgePoint(1)==otherPoint.getEdgePoint(1)) {
 			//only one shared point
-			return false;
-		}else if (this.getEdgePoint(0)==b.getEdgePoint(1)||this.getEdgePoint(1)==b.getEdgePoint(0)) {
+			return true;
+		}else if (getEdgePoint(0)==otherPoint.getEdgePoint(1)||getEdgePoint(1)==otherPoint.getEdgePoint(0)) {
 			//another shared point check
-			return false;
+			return true;
 		}else {
 			//if no points are shared then the edges are independent
-			return true;
+			return false;
 		}
 	}
 	

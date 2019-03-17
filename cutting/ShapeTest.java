@@ -39,7 +39,7 @@ public class ShapeTest {
 		arr[3] = c;
 
 		assertEquals(b.getX(), arr[1].getX());
-		Shape shape = new Shape(3, d);
+		Shape shape = new Shape(3, 3, d);
 		shape.setPoint(0, a);
 		assertEquals(a.getX(), (shape.getPoint(0)).getX());
 	}
@@ -51,7 +51,7 @@ public class ShapeTest {
 		// Point b = new Point(2,2,2);
 		// Point c = new Point(3,4,5);
 		Point d = new Point(0, 0, 0);
-		Shape shape = new Shape(3, d);
+		Shape shape = new Shape(3, 3, d);
 
 		assertEquals(d.getX(), (shape.getCenter()).getX());
 	}
@@ -61,7 +61,7 @@ public class ShapeTest {
 		// fail("Not yet implemented");
 		Point c = new Point(1, 2, 3);
 		Point d = new Point(0, 0, 0);
-		Shape shape = new Shape(3, d);
+		Shape shape = new Shape(3, 3, d);
 
 		assertEquals(c.getX(), (shape.getCenter()).getX());
 		shape.setCenter(c);
