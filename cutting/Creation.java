@@ -2,6 +2,8 @@ package cutting;
 
 import java.util.ArrayList;
 
+import cutting.Shape.Plane;
+
 public class Creation {
 	//public Shape shapes[];
 	ArrayList<Shape> shapes = new ArrayList(1);
@@ -31,6 +33,35 @@ public class Creation {
 			addShape(left);
 			addShape(right);
 		}
+	}
+	
+	public void makeParallelepiped(Point center, Point one, Point two, Point translation) {
+		
+	}
+	
+	//give this method the center and plane of the bottom of the cube and it will do the rest
+	public void makeCube(Point center, double width, Plane plane) {
+		Point centerFive = Point.getTranslation(center, 0, 0, width);
+		Square zero = new Square(center, width, plane);
+		Square five = new Square(centerFive, width, plane);
+		Point centerOne = zero.getEdge(0).getEdgePoint(0).midpoint(five.getEdge(0).getEdgePoint(1));
+		Shape one = new Shape (4,4,centerOne);
+		one.makeShape(zero.getEdge(0), five.getEdge(0), centerOne, 4);
+		Point centerTwo = zero.getEdge(1).getEdgePoint(0).midpoint(five.getEdge(1).getEdgePoint(1));
+		Shape two = new Shape (4,4,centerTwo);
+		two.makeShape(zero.getEdge(1), five.getEdge(1), centerTwo, 4);
+		Point centerThree = zero.getEdge(2).getEdgePoint(0).midpoint(five.getEdge(2).getEdgePoint(1));
+		Shape three = new Shape (4,4,centerThree);
+		three.makeShape(zero.getEdge(2), one.getEdge(2), centerThree, 4);
+		Point centerFour = zero.getEdge(3).getEdgePoint(0).midpoint(five.getEdge(3).getEdgePoint(1));
+		Shape four = new Shape (4,4,centerFour);
+		four.makeShape(zero.getEdge(3), five.getEdge(3), centerFour, 4);
+		this.addShape(zero);
+		this.addShape(one);
+		this.addShape(two);
+		this.addShape(three);
+		this.addShape(four);
+		this.addShape(five);
 	}
 	
 	public Shape getShape(int position) {

@@ -77,6 +77,19 @@ public class Shape{
 		}
 	}
 	
+	public void setEdge(Edge edge, int position) {
+		edges[position] = edge;
+	}
+	
+	public Edge getEdge(int position) {
+		return edges[position];
+	}
+	
+	public Edge getCopiedEdge(int position) {
+		Edge result = edges[position];
+		return result;
+	}
+	
 	public int pointsSize() {
 		return points.length;
 	}
