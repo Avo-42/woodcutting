@@ -5,25 +5,23 @@ package cutting;
 public class Triangle extends Shape{
 	public Point zero, one, two;
 	
-	public Triangle(Point[] points, Point center) {
+	public Triangle(Point center, Edge a, Point b) {
 		super(3, 3, center);
-		zero = points[0];
-		one = points[1];
-		two = points[2];
+		makeTriangle(center, a, b);
 	}
 	
 	public void makeTriangle(Point center, Point pointOne, Point pointTwo, Point pointThree) {
-		this.setCenter(center);
-		this.setPoint(0, pointOne);
-		this.setPoint(1, pointTwo);
-		this.setPoint(2, pointThree);
+		setCenter(center);
+		setPoint(0, pointOne);
+		setPoint(1, pointTwo);
+		setPoint(2, pointThree);
 	}
 	
 	public void makeTriangle(Point center, Edge edge, Point point) {
-		this.setCenter(center);
-		this.setPoint(0, edge.getEdgePoint(0));
-		this.setPoint(1, edge.getEdgePoint(1));
-		this.setPoint(2, point);
+		setCenter(center);
+		setPoint(0, edge.getEdgePoint(0));
+		setPoint(1, edge.getEdgePoint(1));
+		setPoint(2, point);
 	}
 	
 	public void pointShift(int pointNum, Point value) {
