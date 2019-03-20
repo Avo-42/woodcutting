@@ -170,4 +170,10 @@ public class Point {
 		z = z + point.getZ();
 		point.setPoint(x, y, z);
 	}
+	
+	public static void translatePoint(Point point, Point t) {
+		point.setX(t.getX() + point.getX());
+		point.setY(t.getY() + point.getY());
+		point.setZ(t.getZ() + point.getZ());
+	}
 }

@@ -35,7 +35,10 @@ public class Creation {
 		}
 	}
 	
-	public void makeParallelepiped(Point center, Point one, Point two, Point translation) {
+	public void makeParallelepiped(Point center, Edge edge, Point translation, Point t) {
+		Parallelogram zero = new Parallelogram (center, edge, translation);
+		Parallelogram five = new Parallelogram (center, edge, translation);
+		five.translateShape(five, t);
 		
 	}
 	

@@ -115,9 +115,21 @@ public class Shape{
 		Point.translatePoint(center, x, y, z);
 	}
 	
+	public void translateCenter(Point translation) {
+		Point.translatePoint(center, translation.getX(), translation.getY(), translation.getZ());
+	}
+	
 	public void translateShape(Shape shape, double x, double y, double z) {
+		this.translateCenter(x, y, z);
 		for(int i = 0; i<=shape.pointsSize(); i++) {
 			Point.translatePoint(shape.getPoint(i), x, y, z);
+		}
+	}
+	
+	public void translateShape(Shape shape, Point t) {
+		this.translateCenter(t);
+		for(int i = 0; i<=shape.pointsSize(); i++) {
+			Point.translatePoint(shape.getPoint(i), t);
 		}
 	}
 	
