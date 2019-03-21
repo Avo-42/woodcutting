@@ -1,18 +1,18 @@
 package cutting;
 
 public class Corner {
-	private int num;
-	private Shape polygon;
-	public Corner(Shape shape, int pointNumber) {
-		polygon = shape;
-		num = pointNumber;
+	private final int pointIndex;
+	private final Shape shape;
+	public Corner(Shape shape, int pointIndex) {
+		this.shape = shape;
+		this.pointIndex = pointIndex;
 	}
 	
 	public int getPosition() {
-		return num;
+		return pointIndex;
 	}
 	
 	public Shape getShape() {
-		return polygon;
+		return shape;
 	}
 }

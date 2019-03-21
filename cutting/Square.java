@@ -3,13 +3,12 @@ package cutting;
 public class Square extends Shape{
 		
 	public Square (Point center, double width, Plane plane) {
-		super(4, 4, center);
+		super(4, 4);
 		this.makeSquare(center, width, plane);
 	}
 	
 	//makes a square given the bottom left point
-	public void makeSquareFromPoint(Point point, Point center, double width, Plane plane) {
-		this.setCenter(center);
+	public void makeSquareFromPoint(Point point, double width, Plane plane) {
 		this.setPoint(0, point);
 		if (plane == Plane.XY) {
 			Point a = new Point(point.getX()+width, point.getY(), point.getZ());
