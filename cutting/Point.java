@@ -173,7 +173,7 @@ public class Point {
 	
 	public static void translatePoint(Point point, Point t) {
 		point.setX(t.getX() + point.getX());
-		point.setY(t.getY() + point.getY());
+		point.setY(t.getY() + point.getY() );
 		point.setZ(t.getZ() + point.getZ());
 	}
 }

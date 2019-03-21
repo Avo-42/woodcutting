@@ -9,6 +9,7 @@ public class Shape{
 		points = new Point[pointCount];
 		edges = new Edge[edgeCount];
 		center = centerVal;
+		
 	}
 	
 	public Shape makeShape(Point[] points, int edgeCount, Point center) {

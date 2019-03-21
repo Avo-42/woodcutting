@@ -3,7 +3,7 @@ package cutting;
 //import cutting.Rectangle.Plane;
  
 public class Triangle extends Shape{
-	public Point zero, one, two;
+	private Point zero, one, two;
 	
 	public Triangle(Point center, Edge a, Point b) {
 		super(3, 3, center);

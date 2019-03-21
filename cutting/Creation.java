@@ -1,16 +1,51 @@
 package cutting;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cutting.Shape.Plane;
 
 public class Creation {
-	//public Shape shapes[];
 	ArrayList<Shape> shapes = new ArrayList(1);
-	//public int count = 0;
 	
-	public Creation(Shape first) {
-		
+	public Creation(Shape firstShape) {
+		shapes.add(firstShape);
+	}
+	
+	public List<Corner> hasSameCorner(Point point){
+		ArrayList<Corner> corners = new ArrayList(1);
+		Shape shape;
+		Corner corner;
+		for(int i = 0; i < shapes.size(); i++) {
+			shape = this.getShape(i);
+			for(int j = 0; j < shape.pointsSize(); j++) {
+				if (point.isSame(shape.getPoint(j))) {
+					corner = new Corner(shape, j);
+					corners.add(corner);
+				}
+			}
+		}
+		return corners;
+	}
+	
+	public int[]  hasSamePoint(Point point) {
+		Shape shape;
+		Point p;
+		int shapeNum, pointNum, count = 0;
+		//the result array is set to size 10 which is enough to hold 10 shared points data, the even point will hold the shape number, while the odd numbers hold the shape's point number
+		int[] result = new int[20];
+		for(int i = 0; i < shapes.size(); i++) {
+			shape = this.getShape(i);
+			for(int j = 0; j < shape.pointsSize(); j++) {
+				p = shape.getPoint(j);
+				if (p.isSame(point) == true) {
+					shapeNum = i;
+					pointNum = j;
+					count += 2;
+				}
+			}
+		}
+		return result;
 	}
 	
 	//a should be "above" b
@@ -39,7 +74,24 @@ public class Creation {
 		Parallelogram zero = new Parallelogram (center, edge, translation);
 		Parallelogram five = new Parallelogram (center, edge, translation);
 		five.translateShape(five, t);
-		
+		Point centerOne = zero.getEdge(0).getEdgePoint(0).midpoint(five.getEdge(0).getEdgePoint(1));
+		Shape one = new Shape(4,4,centerOne);
+		one.makeShape(zero.getEdge(0), five.getEdge(0), centerOne, 4);
+		Point centerTwo = zero.getEdge(1).getEdgePoint(0).midpoint(five.getEdge(1).getEdgePoint(1));
+		Shape two = new Shape(4,4,centerTwo);
+		two.makeShape(zero.getEdge(1), five.getEdge(1), centerTwo, 4);
+		Point centerThree = zero.getEdge(2).getEdgePoint(0).midpoint(five.getEdge(2).getEdgePoint(1));
+		Shape three = new Shape(4,4,centerThree);
+		three.makeShape(zero.getEdge(2), five.getEdge(2), centerThree, 4);
+		Point centerFour = zero.getEdge(3).getEdgePoint(0).midpoint(five.getEdge(3).getEdgePoint(1));
+		Shape four = new Shape(4,4,centerFour);
+		four.makeShape(zero.getEdge(3), five.getEdge(3), centerFour, 4);
+		this.addShape(zero);
+		this.addShape(one);
+		this.addShape(two);
+		this.addShape(three);
+		this.addShape(four);
+		this.addShape(five);
 	}
 	
 	//give this method the center and plane of the bottom of the cube and it will do the rest
@@ -74,7 +126,6 @@ public class Creation {
 	
 	public void addShape(Shape shape) {
 		shapes.set(shapes.size(), shape);
-		//count ++;
 	}
 	
 	public void removeShape(int num) {
@@ -82,6 +133,5 @@ public class Creation {
 			shapes.set(i, shapes.get(i+1));
 		}
 		shapes.remove(shapes.size()-1);
-		//count --;
 	}
 }
