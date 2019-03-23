@@ -117,7 +117,7 @@ public class Viewer extends JComponent implements MouseMotionListener, MouseList
 			}
 			double ratio = ((double)j) / shapes.size();
 //			g2.setColor(new Color(200, 200, 20));
-			Color color = new Color(200, 20, (int)(255.0 * ratio));
+			Color color = new Color(100, 100, (int)(255.0 * ratio));
 			g2.setColor(creation.getColor(shape, color));
 			g2.fillPolygon(xs, ys, pointCount);
 		}
@@ -128,7 +128,9 @@ public class Viewer extends JComponent implements MouseMotionListener, MouseList
 		System.out.println("Program Started");
 		Creation creation = new Creation();
 		creation.addLight(new Light(new Point(20,10,10)));
-		creation.addLight(new Light(new Point(-20,10,10)));
+		Light light = new Light(new Point(-20,10,10));
+		light.setColor(120, 200, 100);
+		creation.addLight(light);
 //		creation.makeParallelepiped(new Edge(new Point (-1,-1,0), new Point (-1,1,0)), new Point (2,0,0), new Point(0,0,3));
 //		Square square = new Square(new Point(0, 0, 0), 4, Shape.Plane.XY);
 //		System.out.println(square);
