@@ -8,6 +8,9 @@ import cutting.Shape.Plane;
 public class Creation {
 	private List<Shape> shapes = new ArrayList<>(1);
 	
+	public Creation() {
+	}
+
 	public Creation(Shape firstShape) {
 		shapes.add(firstShape);
 	}
@@ -43,8 +46,8 @@ public class Creation {
 	
 	public void makeParallelepiped(Edge edge, Point translation, Point t) {
 		Parallelogram zero = new Parallelogram (edge, translation);
-		Parallelogram five = new Parallelogram (edge, translation);
-		five.translateShape(five, t);
+		Edge fiveEdge = edge.getTranslatedEdge(t); 
+		Parallelogram five = new Parallelogram (fiveEdge, translation);
 		Shape one   = Shape.makeShape(zero.getEdge(0), five.getEdge(0));
 		Shape two   = Shape.makeShape(zero.getEdge(1), five.getEdge(1));
 		Shape three = Shape.makeShape(zero.getEdge(2), five.getEdge(2));
@@ -74,15 +77,29 @@ public class Creation {
 		this.addShape(five);
 	}
 	
+	public int getShapeCount() {
+		return shapes.size();
+	}
 	public Shape getShape(int position) {
 		return shapes.get(position);
 	}
 	
 	public void addShape(Shape shape) {
-		shapes.set(shapes.size(), shape);
+		shapes.add(shape);
 	}
 	
 	public void removeShape(int num) {
 		shapes.remove(num);
 	}
+	public String toString() {
+		StringBuilder b = new StringBuilder();
+		b.append("[");
+		for(Shape shape: shapes) {
+			b.append("\n  ");
+			b.append(shape.toString());
+		}
+		b.append("\n]");
+		return b.toString();
+	}
+
 }

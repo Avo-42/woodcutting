@@ -12,10 +12,15 @@ public class Point {
 	//fix this so if a rounding mismatch occurs the points will still be counted as the same
 	//fixed it so that it no longer requires two points
 	public boolean isSame(Point otherPoint) {
-		if (getX() != otherPoint.getX() || getY() != otherPoint.getY() || getZ() != otherPoint.getZ()) {
+		if (round(getX(), 4) != round(otherPoint.getX(),4) || round(getY(),4) != round(otherPoint.getY(),4) || round(getZ(),4) != round(otherPoint.getZ(),4)) {
 			return false;
 		}
 		return true;
+	}
+	
+	public double round(double input, int places) {
+		double scale = Math.pow(10, places);
+		return Math.round((input*scale)/scale);
 	}
 	
 	public Point getRotatedZ(Point center, double angle) {
@@ -52,9 +57,7 @@ public class Point {
 	}
 	
 	public Point midpoint(Point otherPoint) {
-		Point center = new Point(0,0,0);
-		center.setPoint((getX()-otherPoint.getX())/2, (getY()-otherPoint.getY())/2, (getZ()-otherPoint.getZ())/2);
-		return center;
+		return new Point((getX()-otherPoint.getX())/2, (getY()-otherPoint.getY())/2, (getZ()-otherPoint.getZ())/2);
 	}
 	
 	public double getAngle(Point otherPoint) {
@@ -165,9 +168,9 @@ public class Point {
 	
 	// translates a point, no new points are created
 	public static void translatePoint(Point point, double x, double y, double z) {
-		x = x + point.getX();
-		y = y + point.getY();
-		z = z + point.getZ();
+		x += point.getX();
+		y += point.getY();
+		z += point.getZ();
 		point.setPoint(x, y, z);
 	}
 	

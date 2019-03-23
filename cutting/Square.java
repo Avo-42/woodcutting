@@ -65,40 +65,32 @@ public class Square extends Shape{
 		c = center.getZ();
 		d = width/2;
 		if (plane == Plane.XY ) {
-			int i = 3;
-			for (int j = -1; j<=1; j+=2) {
-				for (int k = -1; k<=1; k+=2) {
-					double x = j*d/2 + a;
-					double y = k*d + b;
-					double z = c;
-					Point temp = new Point(x, y, z);
-					this.setPoint(i, temp);
-					i--;
-				}
-			}
+			Point zero = new Point(center.getX()-d, center.getY()-d, center.getZ());
+			Point one = new Point(center.getX()+d, center.getY()-d, center.getZ());
+			Point two = new Point(center.getX()+d, center.getY()+d, center.getZ());
+			Point three = new Point(center.getX()-d, center.getY()+d, center.getZ());
+			this.setPoint(0, zero);
+			this.setPoint(1, one);
+			this.setPoint(2, two);
+			this.setPoint(3, three);
 		}else if(plane == Plane.YZ) {
-			int i = 3;
-			for (int j = -1; j<=1; j+=2) {
-				for (int k = -1; k<=1; k+=2) {
-					double x = a;
-					double y = j*d + b;
-					double z = k*d + c;
-					Point temp = new Point(x, y, z);
-					this.setPoint(i, temp);
-					i--;
-				}
-			}
+			Point zero = new Point(center.getX(), center.getY()-d, center.getZ()-d);
+			Point one = new Point(center.getX(), center.getY()-d, center.getZ()+d);
+			Point two = new Point(center.getX(), center.getY()+d, center.getZ()+d);
+			Point three = new Point(center.getX(), center.getY()+d, center.getZ()-d);
+			this.setPoint(0, zero);
+			this.setPoint(1, one);
+			this.setPoint(2, two);
+			this.setPoint(3, three);
 		}else {
-			int i = 3;
-			for (int j = -1; j<=1; j+=2) {
-				for (int k = -1; k<=1; k+=2) {
-					double x = j*d + a;
-					double y = b;
-					double z = k*d + c;
-					Point temp = new Point(x, y, z);
-					this.setPoint(i, temp);
-				}
-			}
+			Point zero = new Point(center.getX()-d, center.getY(), center.getZ()-d);
+			Point one = new Point(center.getX()+d, center.getY(), center.getZ()-d);
+			Point two = new Point(center.getX()+d, center.getY(), center.getZ()+d);
+			Point three = new Point(center.getX()-d, center.getY(), center.getZ()+d);
+			this.setPoint(0, zero);
+			this.setPoint(1, one);
+			this.setPoint(2, two);
+			this.setPoint(3, three);
 		}
 		Edge edgeA = new Edge(this.getPoint(0), this.getPoint(1));
 		Edge edgeB = new Edge(this.getPoint(1), this.getPoint(2));

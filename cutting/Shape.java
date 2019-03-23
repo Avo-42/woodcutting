@@ -10,7 +10,30 @@ public class Shape{
 	public Shape (int pointCount, int edgeCount) {
 		points = new Point[pointCount];
 		edges = new Edge[edgeCount];
-		
+	}
+	
+	public double[] plygonX() {
+		double[] result = new double[this.pointsSize()];
+		for(int i = 0; i < this.pointsSize(); i++) {
+			result[i] = this.getPoint(i).getX();
+		}
+		return result;
+	}
+	
+	public double[] plygonY() {
+		double[] result = new double[this.pointsSize()];
+		for(int i = 0; i < this.pointsSize(); i++) {
+			result[i] = this.getPoint(i).getY();
+		}
+		return result;
+	}
+	
+	public double[] plygonZ() {
+		double[] result = new double[this.pointsSize()];
+		for(int i = 0; i < this.pointsSize(); i++) {
+			result[i] = this.getPoint(i).getZ();
+		}
+		return result;
 	}
 	
 	public Point makeCenter() {
@@ -48,8 +71,8 @@ public class Shape{
 		Shape shape = new Shape(4, 4);
 		shape.setPoint(0, edgeOne.getEdgePoint(0));
 		shape.setPoint(1, edgeOne.getEdgePoint(1));
-		shape.setPoint(2, edgeTwo.getEdgePoint(0));
-		shape.setPoint(4, edgeTwo.getEdgePoint(1));
+		shape.setPoint(2, edgeTwo.getEdgePoint(1));
+		shape.setPoint(3, edgeTwo.getEdgePoint(0));
 		shape.edges[0] = edgeOne;
 		shape.edges[2] = edgeTwo;
 		//making a note right here b/c depending on how makeShape(point[]) is used this may make a diagonal edge, can't think of an easy fix.
@@ -106,10 +129,6 @@ public class Shape{
 		points[pointPosition] = point;
 	}
 	
-	public void translateCenter(Point translation) {
-		Point.translatePoint(center, translation.getX(), translation.getY(), translation.getZ());
-	}
-	
 	public void translateShape(Shape shape, double x, double y, double z) {
 		for(int i = 0; i<shape.pointsSize(); i++) {
 			Point.translatePoint(shape.getPoint(i), x, y, z);
@@ -117,10 +136,22 @@ public class Shape{
 	}
 	
 	public void translateShape(Shape shape, Point t) {
-		this.translateCenter(t);
 		for(int i = 0; i<shape.pointsSize(); i++) {
 			Point.translatePoint(shape.getPoint(i), t);
 		}
+	}
+	
+	public String toString() {
+		StringBuilder b = new StringBuilder();
+		b.append("[");
+		for(int i = 0; i<points.length; i++) {
+			Point p = points[i];
+			if(i>0)
+				b.append(", ");
+			b.append(String.format("(%.1f, %.1f, %.1f)", p.getX(), p.getY(), p.getZ()));
+		}
+		b.append("]");
+		return b.toString();
 	}
 	
 }
