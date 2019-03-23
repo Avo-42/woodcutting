@@ -1,5 +1,6 @@
 package cutting;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +8,48 @@ import cutting.Shape.Plane;
 
 public class Creation {
 	private List<Shape> shapes = new ArrayList<>(1);
+	private List<Light> lights = new ArrayList<>(1);
+	private Color defaultColor = new Color(100,100,100);
+	
 	
 	public Creation() {
+	}
+	
+	public Color getColor(Shape shape, Color color){
+		int red=defaultColor.getRed(); 
+		int blue=defaultColor.getBlue();
+		int green=defaultColor.getGreen();
+		Point point = shape.getPoint(0).getDifference(shape.getPoint(1)).crossProduct(shape.getPoint(1).getDifference(shape.getPoint(2)));
+		point.normalize();
+		for (Light light: lights) {
+			Point temp = light.getPoint().getDifference(shape.makeCenter());
+			temp.normalize();
+			double a = -temp.dotProduct(point);
+			if (a<0) {
+				continue;
+			}
+			red+=a*light.getColor().getRed();
+			green+=a*light.getColor().getGreen();
+			blue+=a*light.getColor().getBlue();
+		}
+		red=color.getRed()*red/255;
+		green=color.getGreen()*green/255;
+		blue=color.getBlue()*blue/255;
+		if (red>255) {red=255;}
+		if (green>255) {green=255;}
+		if (blue>255) {blue=255;}
+		if (red<0) {red=0;}
+		if (green<0) {green=0;}
+		if (blue<0) {blue=0;}
+		return new Color(red,green,blue);
+	}
+	
+	public void addLight(Light light) {
+		lights.add(light);
+	}
+	
+	public void removeLight(Light light) {
+		lights.remove(light);
 	}
 
 	public Creation(Shape firstShape) {
