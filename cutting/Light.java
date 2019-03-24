@@ -8,6 +8,7 @@ public class Light {
 	private int b = 100;
 	private Point light;
 	
+	//this is a test of git pull
 	public Light(Point point) {
 		light = point;
 	}
