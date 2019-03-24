@@ -8,7 +8,7 @@ public class Test {
 		Point zero = new Point(1,1,1);
 		Point one = new Point(2,2,2);
 		
-		Parallelogram a = new Parallelogram(center, zero, one, 0, 0, 0);
+		Parallelogram a = new Parallelogram(new Edge(center, zero), one);
 		
 	}
 

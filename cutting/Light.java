@@ -11,7 +11,13 @@ public class Light {
 	public Light(Point point) {
 		light = point;
 	}
-	
+	public Light(Point point, int r, int g, int b) {
+		light = point;
+		this.r=r;
+		this.g=g;
+		this.b=b;
+	}
+
 	public Point getPoint() {
 		return light;
 	}

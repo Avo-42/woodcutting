@@ -1,10 +1,7 @@
 package cutting;
 
-import org.junit.*;
-
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class ShapeTest {
 
@@ -33,13 +30,12 @@ public class ShapeTest {
 		Point a = new Point(3, 4, 5);
 		Point b = new Point(5, 4, 6);
 		Point c = new Point(1, 3, 2);
-		Point d = new Point(0, 0, 0);
 		arr[0] = a;
 		arr[1] = b;
 		arr[3] = c;
 
 		assertEquals(b.getX(), arr[1].getX());
-		Shape shape = new Shape(3, 3, d);
+		Shape shape = new Shape(3, 3);
 		shape.setPoint(0, a);
 		assertEquals(a.getX(), (shape.getPoint(0)).getX());
 	}
@@ -51,21 +47,9 @@ public class ShapeTest {
 		// Point b = new Point(2,2,2);
 		// Point c = new Point(3,4,5);
 		Point d = new Point(0, 0, 0);
-		Shape shape = new Shape(3, 3, d);
+		Shape shape = new Shape(3, 3);
 
-		assertEquals(d.getX(), (shape.getCenter()).getX());
-	}
-
-	@Test
-	public void testSetCenter() {
-		// fail("Not yet implemented");
-		Point c = new Point(1, 2, 3);
-		Point d = new Point(0, 0, 0);
-		Shape shape = new Shape(3, 3, d);
-
-		assertEquals(c.getX(), (shape.getCenter()).getX());
-		shape.setCenter(c);
-		assertEquals(c.getX(), (shape.getCenter()).getX());
+		assertEquals(d.getX(), shape.makeCenter().getX());
 	}
 
 }

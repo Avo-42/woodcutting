@@ -1,9 +1,7 @@
 package cutting;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
@@ -22,21 +20,20 @@ public class Viewer extends JComponent implements MouseMotionListener, MouseList
 	
 	private Point makePointFromPerspective(Point p) {
 		Point thetaRotated = p.getRotatedZ(origin, theta);
-		Point tiltRotated = thetaRotated.getRotatedY(origin, tilt);
-		return tiltRotated;
+		return thetaRotated.getRotatedY(origin, tilt);
 	}
 	
-	Viewer(Creation creation) {
+	public Viewer(Creation creation) {
 		//setFocusable(true);
 		this.creation = creation;
 		addMouseMotionListener(this);
 		addMouseListener(this);
 	}
 	
-	int initialX = -1;
-	int initialY = -1;
-	double initialTheta;
-	double initialTilt;
+	private int initialX = -1;
+	private int initialY = -1;
+	private double initialTheta;
+	private double initialTilt;
 		
 	public void mouseDragged(MouseEvent e) {
 		if (initialX == -1) {
@@ -48,7 +45,7 @@ public class Viewer extends JComponent implements MouseMotionListener, MouseList
 		
 		// System.out.printf("dx: %d dy: %d\n", dx, dy);
 		theta = initialTheta + ((double)dx) / 200;
-		tilt = initialTilt - ((double)dy) / 200;
+		tilt = initialTilt + ((double)dy) / 200;
 		System.out.printf("theta: %f tilt: %f\n", theta, tilt);
 		repaint();
 	}
@@ -110,7 +107,7 @@ public class Viewer extends JComponent implements MouseMotionListener, MouseList
 				Point perspectiveP = makePointFromPerspective(p);
 				double dist = perspectiveP.getX()+viewerDistance;
 				double x = 400 * perspectiveP.getY() / dist;
-				double y = 400 * perspectiveP.getZ() / dist;
+				double y = -400 * perspectiveP.getZ() / dist;
 //				System.out.printf("(%.2f, %.2f) ", x , y);
 				xs[i] = (int)(x + centerX);
 				ys[i] = (int)(y + centerY);
@@ -122,22 +119,37 @@ public class Viewer extends JComponent implements MouseMotionListener, MouseList
 			g2.fillPolygon(xs, ys, pointCount);
 		}
 	}
-	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("Test2");
-		System.out.println("Program Started");
+
+	private static void addCloseListener(JFrame frame){
+		frame.addWindowListener(new WindowAdapter()
+		{
+			@Override
+			public void windowClosing(WindowEvent e)
+			{
+				e.getWindow().dispose();
+				System.exit(0);
+			}
+		});
+	}
+
+	private static Creation makeCreation() {
 		Creation creation = new Creation();
 		creation.addLight(new Light(new Point(20,10,10)));
-		Light light = new Light(new Point(-20,10,10));
-		light.setColor(120, 200, 100);
-		creation.addLight(light);
+		creation.addLight(new Light(new Point(-20,10,10), 120, 200, 100));
 //		creation.makeParallelepiped(new Edge(new Point (-1,-1,0), new Point (-1,1,0)), new Point (2,0,0), new Point(0,0,3));
 //		Square square = new Square(new Point(0, 0, 0), 4, Shape.Plane.XY);
 //		System.out.println(square);
 //		creation.addShape(square);
-		creation.makeCube(new Point(0, 0, 0), 4, Shape.Plane.XY);
-		creation.addShape(new Square(new Point(0,0,-1), 5, Shape.Plane.XY));
-		creation.makeCube(new Point(0, 0, -4), 3, Shape.Plane.XY);
+		creation.makeCube(new Point(0, 0, -2), 4, Shape.Plane.XY);
+		creation.addShape(new Square(new Point(0,0,-2), 8, Shape.Plane.XY));
+//		creation.makeCube(new Point(0, 0, -4), 3, Shape.Plane.XY);
+		return creation;
+	}
+	
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("Creation Viewer");
+		addCloseListener(frame);
+		Creation creation = makeCreation();
 		Viewer viewer = new Viewer(creation);
 		viewer.setPreferredSize(new Dimension(400, 400));
 		frame.getContentPane().add(viewer);

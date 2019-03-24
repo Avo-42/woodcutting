@@ -24,7 +24,7 @@ public class Creation {
 		for (Light light: lights) {
 			Point temp = light.getPoint().getDifference(shape.makeCenter());
 			temp.normalize();
-			double a = -temp.dotProduct(point);
+			double a = temp.dotProduct(point);
 			if (a<0) {
 				continue;
 			}
