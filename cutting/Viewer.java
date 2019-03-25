@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JFrame;
+
+import cutting.Shape.Plane;
+
 import javax.swing.JComponent;
 
 public class Viewer extends JComponent implements MouseMotionListener, MouseListener {
@@ -136,7 +139,8 @@ public class Viewer extends JComponent implements MouseMotionListener, MouseList
 		Creation creation = new Creation();
 		creation.addLight(new Light(new Point(20,10,10)));
 		creation.addLight(new Light(new Point(-20,10,10), 120, 200, 100));
-		creation.makeParallelepiped(new Edge(new Point (-1,-1,0), new Point (-3,1,0)), new Point (2,0,0), new Point(0,0,3));
+		creation.makeRotatedCube(new Point(0,0,0), 4, 45, Plane.XY);
+//		creation.makeParallelepiped(new Edge(new Point (-1,-1,0), new Point (-3,1,0)), new Point (2,0,0), new Point(0,0,3));
 //		Square square = new Square(new Point(0, 0, 0), 4, Shape.Plane.XY);
 //		System.out.println(square);
 //		creation.addShape(square);

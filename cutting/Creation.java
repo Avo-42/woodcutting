@@ -85,6 +85,19 @@ public class Creation {
 		}
 	}
 	
+	public void makeRotatedCube(Point center, double width, double angle, Plane plane) {
+		Point centerFive = Point.getTranslation(center, 0, 0, width);
+		Square zero = new Square(center, width, plane);
+		Square five = new Square(centerFive, width, plane);
+		five.rotate(plane, angle);
+		this.addShape(zero);
+		this.addShape(five);
+		this.makeTwoTriangles(zero.getEdge(0),five.getEdge(0), true);
+		this.makeTwoTriangles(zero.getEdge(1),five.getEdge(1), true);
+		this.makeTwoTriangles(zero.getEdge(2),five.getEdge(2), true);
+		this.makeTwoTriangles(zero.getEdge(3),five.getEdge(3), true);
+	}
+	
 	public void makeParallelepiped(Edge edge, Point translation, Point t) {
 		Parallelogram zero = new Parallelogram (edge, translation);
 		Edge fiveEdge = edge.getTranslatedEdge(t); 
