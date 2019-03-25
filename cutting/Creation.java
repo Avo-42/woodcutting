@@ -19,12 +19,11 @@ public class Creation {
 		int red=defaultColor.getRed(); 
 		int blue=defaultColor.getBlue();
 		int green=defaultColor.getGreen();
-		Point point = shape.getPoint(0).getDifference(shape.getPoint(1)).crossProduct(shape.getPoint(1).getDifference(shape.getPoint(2)));
-		point.normalize();
+		Point perpendicular = shape.getPerpendicular();
 		for (Light light: lights) {
 			Point temp = light.getPoint().getDifference(shape.makeCenter());
 			temp.normalize();
-			double a = temp.dotProduct(point);
+			double a = temp.dotProduct(perpendicular);
 			if (a<0) {
 				continue;
 			}

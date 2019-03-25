@@ -58,7 +58,20 @@ public class Shape{
 		this.addEdge(last, edgeCount);
 		return a;
 	}
-	
+
+	/**
+	 * Returns a normalized point for the direction that is perpendicular to this shape.
+	 * @return The perpendicular direction.
+	 */
+	public Point getPerpendicular(){
+		Point edgeDirection0 = getPoint(0).getDifference(getPoint(1));
+		Point edgeDirection1 = getPoint(1).getDifference(getPoint(2));
+		Point perpendicular = edgeDirection0.crossProduct(edgeDirection1);
+		perpendicular.normalize();
+		return perpendicular;
+	}
+
+
 	public void addEdge(Edge edge, int edgeNum) {
 		edges[edgeNum] = edge;
 	}
