@@ -139,11 +139,15 @@ public class Viewer extends JComponent implements MouseMotionListener, MouseList
 		Creation creation = new Creation();
 		creation.addLight(new Light(new Point(20,10,10)));
 		creation.addLight(new Light(new Point(-20,10,10), 120, 200, 100));
-		creation.makeRotatedCube(new Point(0,0,0), 4, 45, Plane.XY);
+		Parallelogram p = new Parallelogram((new Edge (new Point(-1,1,0), new Point(-1,-1,0))), new Point(2,0,0));
+//		creation.addShape(p);
+		creation.makeRotatedCreation(p, 45, (new Point(0,0,2)), Plane.XY);
+//		creation.makeRotatedCube(new Point(0,0,0), 4, 45, Plane.XY);
 //		creation.makeParallelepiped(new Edge(new Point (-1,-1,0), new Point (-3,1,0)), new Point (2,0,0), new Point(0,0,3));
-//		Square square = new Square(new Point(0, 0, 0), 4, Shape.Plane.XY);
+//		Square square = new Square(new Point(0, 0, 0), 2, Shape.Plane.XY);
 //		System.out.println(square);
 //		creation.addShape(square);
+//		creation.makeRotatedCreation(square, 45, (new Point(0,0,2)), Plane.XY);
 //		creation.makeCube(new Point(0, 0, -2), 4, Shape.Plane.XY);
 //		creation.addShape(new Square(new Point(0,0,-2), 8, Shape.Plane.XY));
 //		creation.makeCube(new Point(0, 0, -4), 3, Shape.Plane.XY);

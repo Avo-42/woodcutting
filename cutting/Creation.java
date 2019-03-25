@@ -84,6 +84,19 @@ public class Creation {
 		}
 	}
 	
+	//angle will rotate the opposite shape, and translation will translate the opposite shape
+	public void makeRotatedCreation(Shape base, double angle, Point translation, Plane plane) {
+		Shape temp = base;
+		this.addShape(temp);
+//		System.out.println("Base set");
+		Shape last = Shape.getTranslatedShape(base, translation);
+		last.rotate(plane, angle);
+		this.addShape(last);
+		for (int i = 0; i < base.pointsSize(); i++) {
+			this.makeTwoTriangles(base.getEdge(i), last.getEdge(i), true);
+		}
+	}
+	
 	public void makeRotatedCube(Point center, double width, double angle, Plane plane) {
 		Point centerFive = Point.getTranslation(center, 0, 0, width);
 		Square zero = new Square(center, width, plane);

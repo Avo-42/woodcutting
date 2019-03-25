@@ -158,6 +158,10 @@ public class Point {
 		return new Point(a.getX()+b.getX(), a.getY()+b.getY(), a.getZ()+b.getZ());
 	}
 	
+	public Point getTranslation(Point b) {
+		return new Point(this.getX()+b.getX(), this.getY()+b.getY(), this.getZ()+b.getZ());
+	}
+	
 	public Point getDifference(Point a) {
 		return getTranslation(this, -a.getX(), -a.getY(), -a.getZ());
 	}
@@ -178,5 +182,11 @@ public class Point {
 		point.setX(t.getX() + point.getX());
 		point.setY(t.getY() + point.getY() );
 		point.setZ(t.getZ() + point.getZ());
+	}
+	
+	public void translatePoint(Point t) {
+		this.setX(t.getX() + this.getX());
+		this.setY(t.getY() + this.getY() );
+		this.setZ(t.getZ() + this.getZ());
 	}
 }

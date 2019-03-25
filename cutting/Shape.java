@@ -71,7 +71,6 @@ public class Shape{
 		return perpendicular;
 	}
 
-
 	public void addEdge(Edge edge, int edgeNum) {
 		edges[edgeNum] = edge;
 	}
@@ -135,10 +134,15 @@ public class Shape{
 	}
 	
 	public Point getPoint(int pointNumber) {
-		if(pointNumber > points.length) {
-			System.out.println("pointNum larger than points");
-		}
+//		if(pointNumber > points.length) {
+//			System.out.println("pointNum larger than points");
+//		}
 		return points[pointNumber];
+	}
+	
+	public Point getCopiedPoint(int pointNum) {
+		Point p = points[pointNum];
+		return p;
 	}
 	
 	public void setPoint(int pointPosition,Point point) {
@@ -155,6 +159,31 @@ public class Shape{
 		for(int i = 0; i<shape.pointsSize(); i++) {
 			Point.translatePoint(shape.getPoint(i), t);
 		}
+	}
+	
+	public void copyShape(Shape otherShape) {
+		for(int i = 0; i < points.length; i++) {
+			this.setPoint(i, otherShape.getCopiedPoint(i));
+		}
+		for(int i = 0; i < edges.length; i++) {
+			this.setEdge(otherShape.getCopiedEdge(i), i);
+		}
+	}
+	
+	public int edgesSize() {
+		return edges.length;
+	}
+	
+	public static Shape getTranslatedShape(Shape shapeToCopy, Point t) {
+		Shape result = new Shape(shapeToCopy.pointsSize(), shapeToCopy.edgesSize()); 
+		result.copyShape(shapeToCopy);
+		for(int i = 0; i<shapeToCopy.pointsSize(); i++) {
+			result.getPoint(i).getTranslation(t);
+		}
+		for(int i = 0; i<shapeToCopy.edgesSize(); i++) {
+			result.getEdge(i).getTranslatedEdge(t);
+		}
+		return result;
 	}
 	
 	public String toString() {

@@ -14,6 +14,11 @@ public class Edge {
 		return new Edge(a,b);
 	}
 	
+	public void translateEdge(Point t){
+		points[0].translatePoint(t);
+		points[1].translatePoint(t);
+	}
+	
 	public void setEdgePoint(int pointNum, Point point){
 		points[pointNum] = point;
 	}
