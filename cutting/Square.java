@@ -25,7 +25,7 @@ public class Square extends Shape{
 			this.addEdge(one, 1);
 			this.addEdge(two, 2);
 			this.addEdge(three, 3);
-		}else if(plane == Plane.XZ) {
+		}else if(plane == Plane.ZX) {
 			Point a = new Point(point.getX()+width, point.getY(), point.getZ());
 			Point b = new Point(point.getX(), point.getY(), point.getZ()+width);
 			Point c = new Point(point.getX()+width, point.getY(), point.getZ()+width);

@@ -32,11 +32,13 @@ public class Viewer extends JComponent implements MouseMotionListener, MouseList
 		addMouseMotionListener(this);
 		addMouseListener(this);
 	}
-	
+
+	private boolean isCtrlDown;
 	private int initialX = -1;
 	private int initialY = -1;
 	private double initialTheta;
 	private double initialTilt;
+	private double initialViewerDistance;
 		
 	public void mouseDragged(MouseEvent e) {
 		if (initialX == -1) {
@@ -45,16 +47,19 @@ public class Viewer extends JComponent implements MouseMotionListener, MouseList
 		}
 		int dx = e.getX() - initialX;
 		int dy = e.getY() - initialY;
-		
-		// System.out.printf("dx: %d dy: %d\n", dx, dy);
-		theta = initialTheta + ((double)dx) / 200;
-		tilt = initialTilt + ((double)dy) / 200;
-		System.out.printf("theta: %f tilt: %f\n", theta, tilt);
+
+		if (isCtrlDown) {
+			viewerDistance = initialViewerDistance * Math.pow(2, dy/100.0);
+		} else {
+			// System.out.printf("dx: %d dy: %d\n", dx, dy);
+			theta = initialTheta + ((double) dx) / 200;
+			tilt = initialTilt + ((double) dy) / 200;
+			System.out.printf("theta: %f tilt: %f\n", theta, tilt);
+		}
 		repaint();
 	}
 	
 	public void mouseMoved(MouseEvent e) {}
-	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {	}
 
@@ -70,8 +75,10 @@ public class Viewer extends JComponent implements MouseMotionListener, MouseList
 		System.out.println("Mouse Pressed");
 		initialX = e.getX();
 		initialY = e.getY();
+		isCtrlDown = e.isControlDown();
 		initialTheta = theta;
 		initialTilt = tilt;
+		initialViewerDistance = viewerDistance;
 	}
 
 	@Override

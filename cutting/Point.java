@@ -22,8 +22,27 @@ public class Point {
 		double scale = Math.pow(10, places);
 		return Math.round((input*scale)/scale);
 	}
+
+	public Point getRotated(Point center, Point axis, double angle) {
+		Point r = getDifference(center);
+		double c = Math.cos(angle);
+		double s = Math.sin(angle);
+		Point u = axis.getNormal();
+		double ux = u.xValue;
+		double uy = u.xValue;
+		double uz = u.xValue;
+		// For math, see wikipedia on Rotation Matrix
+		Point rotated = new Point(
+				r.xValue * (c + ux*ux*(1-c)) + r.yValue * (ux*uy*(1-c) - uz*s) + r.zValue * (ux*uz*(1-c) + uy*s),
+				r.xValue * (uy*ux*(1-c) + uz*s) + r.yValue * (c + uy*uy*(1-c)) + r.zValue * (uy*uz*(1-c) + ux*s),
+				r.xValue * (uz*ux*(1-c) + uy*s) + r.yValue * (uz*uy*(1-c) + ux*s) + r.zValue * (c + uz*uz*(1-c))
+		);
+		return rotated.getSum(center);
+	}
 	
 	public Point getRotatedZ(Point center, double angle) {
+		// The code for this could be simplified, but this approach runs faster.
+		// return getRotated(center, Shape.Plane.XY.getDirection(), angle);
 		double c = Math.cos(angle);
 		double s = Math.sin(angle);
 		Point r = getDifference(center);

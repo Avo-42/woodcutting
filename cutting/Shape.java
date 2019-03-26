@@ -94,9 +94,29 @@ public class Shape{
 	}
 	
 	public enum Plane{
-		XY, XZ, YZ
+		XY, YZ, ZX;
+
+		private Point direction;
+		private Point perpendicular1;
+		private Point perpendicular2;
+
+		static {
+			XY.direction = new Point(0, 0, 1);
+			YZ.direction = new Point(1, 0, 0);
+			ZX.direction = new Point(0, 1, 0);
+			XY.perpendicular1 = YZ.direction;
+			YZ.perpendicular1 = ZX.direction;
+			ZX.perpendicular1 = XY.direction;
+			XY.perpendicular2 = ZX.direction;
+			YZ.perpendicular2 = XY.direction;
+			ZX.perpendicular2 = YZ.direction;
+		}
+
+		public Point getDirection() { return direction; }
+		public Point getPerpendicular1() { return perpendicular1; }
+		public Point getPerpendicular2() { return perpendicular2; }
 	}
-	
+
 	//there will only be a rotate shape method b/c rotating a creation will be useless and edges rotating is not very important
 	//it will be assumed that the point center will be the shapes center but it will not be enforced so that if the user wants they can translate the shape about another point
 	public void rotate(Plane plane, double angle) {
@@ -105,7 +125,7 @@ public class Shape{
 			for(int i = 0; i<this.pointsSize(); i++) {
 				this.getPoint(i).setPoint(this.getPoint(i).getRotatedZ(center,  angle));
 			}
-		}else if(plane == Plane.XZ) {
+		}else if(plane == Plane.ZX) {
 			for(int i = 0; i<this.pointsSize(); i++) {
 				this.getPoint(i).setPoint(this.getPoint(i).getRotatedY(center,  angle));
 			}
