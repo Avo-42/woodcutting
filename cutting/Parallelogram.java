@@ -4,18 +4,18 @@ public class Parallelogram extends Shape {
 		
 	public Parallelogram(Edge edge, Point translation) {
 		super(4, 4);
-		this.setPoint(0, edge.getEdgePoint(0));
-		this.setPoint(1, edge.getEdgePoint(1));
-		this.setPoint(2, Point.getTranslation(this.getPoint(1), translation));
-		this.setPoint(3, Point.getTranslation(this.getPoint(0), translation));
-		Edge zero = new Edge(this.getPoint(0), this.getPoint(1));
-		Edge one = new Edge(this.getPoint(1), this.getPoint(2));
-		Edge two = new Edge(this.getPoint(2), this.getPoint(3));
-		Edge three = new Edge(this.getPoint(3), this.getPoint(0));
-		this.setEdge(zero, 0);
-		this.setEdge(one, 1);
-		this.setEdge(two, 2);
-		this.setEdge(three, 3);
+		setPoint(0, edge.getEdgePoint(0));
+		setPoint(1, edge.getEdgePoint(1));
+		setPoint(2, Point.getTranslation(getPoint(1), translation));
+		setPoint(3, Point.getTranslation(getPoint(0), translation));
+		Edge zero = new Edge(getPoint(0), getPoint(1));
+		Edge one = new Edge(getPoint(1), getPoint(2));
+		Edge two = new Edge(getPoint(2), getPoint(3));
+		Edge three = new Edge(getPoint(3), getPoint(0));
+		setEdge(zero, 0);
+		setEdge(one, 1);
+		setEdge(two, 2);
+		setEdge(three, 3);
 	}
 	
 	public static Parallelogram makeParallelogram(Edge edge, Point translation) {

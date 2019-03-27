@@ -196,8 +196,9 @@ public class Shape{
 		for(int i = 0; i<shapeToCopy.pointsSize(); i++) {
 			result.setPoint(i, result.getPoint(i).getTranslation(t));
 		}
-		for(int i = 0; i<result.edgesSize()-2; i++) {
-			result.setEdge(new Edge(result.getPoint(i), result.getPoint(i+1)), i);
+		int edgeCount = result.edgesSize();
+		for(int i = 0; i<edgeCount; i++) {
+			result.setEdge(new Edge(result.getPoint(i), result.getPoint((i+1) % edgeCount)), i);
 		}
 //		result.setEdge(new Edge(result.getPoint(result.pointsSize()-1), result.getPoint(0)), result.pointsSize()-1);
 		result.setEdge(new Edge(result.getPoint(3), result.getPoint(0)), 3);
