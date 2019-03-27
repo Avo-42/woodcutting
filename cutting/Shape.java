@@ -130,9 +130,6 @@ public class Shape{
 				this.getPoint(i).setPoint(this.getPoint(i).getRotatedX(center,  angle));
 			}
 		}
-		for (int i = 0; i < edges.length ; i++) {
-			
-		}
 	}
 	
 	public void setEdge(Edge edge, int position) {
