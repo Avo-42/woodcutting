@@ -12,7 +12,7 @@ public class Shape{
 		edges = new Edge[edgeCount];
 	}
 	
-	public double[] plygonX() {
+	public double[] polygonX() {
 		double[] result = new double[this.pointsSize()];
 		for(int i = 0; i < this.pointsSize(); i++) {
 			result[i] = this.getPoint(i).getX();
@@ -20,7 +20,7 @@ public class Shape{
 		return result;
 	}
 	
-	public double[] plygonY() {
+	public double[] polygonY() {
 		double[] result = new double[this.pointsSize()];
 		for(int i = 0; i < this.pointsSize(); i++) {
 			result[i] = this.getPoint(i).getY();
@@ -28,7 +28,7 @@ public class Shape{
 		return result;
 	}
 	
-	public double[] plygonZ() {
+	public double[] polygonZ() {
 		double[] result = new double[this.pointsSize()];
 		for(int i = 0; i < this.pointsSize(); i++) {
 			result[i] = this.getPoint(i).getZ();
@@ -204,12 +204,35 @@ public class Shape{
 		result.setEdge(new Edge(result.getPoint(3), result.getPoint(0)), 3);
 		return result;
 	}
-	
+
+	/**
+	 * Returns the angle between this shape and the given shape.
+	 * How much to cut off of each shape to make this angle should be calculated elsewhere.
+	 */
 	public double getAngle(Shape shape) {
-		Point centerA = this.makeCenter();
-		Point centerB = shape.makeCenter();
-		double angle = centerA.getAngle(centerB)/2;
+
+		Point perpendicularA = getPerpendicular();
+		Point perpendicularB = shape.getPerpendicular();
+		double angle = perpendicularA.getAngle(perpendicularB);
 		return angle;
+	}
+
+	/**
+	 * Returns the angle between the two edge that meet at this point.
+	 * @param pointIndex The integer index of the point.
+	 * @return The angel at this point.
+	 */
+	public double getAngle(int pointIndex) {
+		int count = pointsSize();
+		// Get the three points of interest (this point and the two adjacent points)
+		Point p = points[pointIndex];
+		Point previousP = points[(pointIndex + 1) % count];
+		Point nextP = points[(pointIndex + count -1) % count];
+		// Calculate the directions of the two edges adjacent to this point
+		Point directionA = nextP.getDifference(p);
+		Point directionB = previousP.getDifference(p);
+		// Return the angle between these directions
+		return directionA.getAngle(directionB);
 	}
 	
 	public String toString() {
