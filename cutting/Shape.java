@@ -226,8 +226,8 @@ public class Shape{
 		int count = pointsSize();
 		// Get the three points of interest (this point and the two adjacent points)
 		Point p = points[pointIndex];
-		Point previousP = points[(pointIndex + 1) % count];
-		Point nextP = points[(pointIndex + count -1) % count];
+		Point nextP = points[(pointIndex + 1) % count];
+		Point previousP = points[(pointIndex + count -1) % count];
 		// Calculate the directions of the two edges adjacent to this point
 		Point directionA = nextP.getDifference(p);
 		Point directionB = previousP.getDifference(p);
