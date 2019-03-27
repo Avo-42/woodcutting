@@ -23,9 +23,7 @@ public class Creation {
 			for(int j = 0; j < shapes.get(ShapeB).edgesSize(); j++) {
 				Edge a = shapes.get(ShapeA).getEdge(i);
 				Edge b = shapes.get(ShapeA).getEdge(j);
-				if(a.hasOverlap(b)==false) {
-//					edgeA = a;
-//					edgeB = b;
+				if(a.fullyOverlaps(b)) {
 					aNum = i;
 					bNum = j;
 				}
