@@ -50,12 +50,12 @@ public class Shape{
 		}
 		for (int i = 1; i <=(edgeCount-1); i ++) {
 			Edge edge = new Edge(points[i-1], points[i]);
-			this.addEdge(edge, i-1);
+			this.setEdge(edge, i-1);
 			//this will add all but one of the edges to edges[]
 		}
 		// I am assuming that edgeCount and pointCount are equal here, adds the last edge, hence the name last.
 		Edge last = new Edge (points[0], points[edgeCount-1]);
-		this.addEdge(last, edgeCount);
+		this.setEdge(last, edgeCount);
 		return a;
 	}
 
@@ -69,10 +69,6 @@ public class Shape{
 		Point perpendicular = edgeDirection0.crossProduct(edgeDirection1);
 		perpendicular.normalize();
 		return perpendicular;
-	}
-
-	public void addEdge(Edge edge, int edgeNum) {
-		edges[edgeNum] = edge;
 	}
 	
 	public static Shape makeShape(Edge edgeOne, Edge edgeTwo) {
@@ -134,6 +130,9 @@ public class Shape{
 				this.getPoint(i).setPoint(this.getPoint(i).getRotatedX(center,  angle));
 			}
 		}
+		for (int i = 0; i < edges.length ; i++) {
+			
+		}
 	}
 	
 	public void setEdge(Edge edge, int position) {
@@ -186,7 +185,7 @@ public class Shape{
 			this.setPoint(i, otherShape.getCopiedPoint(i));
 		}
 		for(int i = 0; i < edges.length; i++) {
-			this.setEdge(otherShape.getCopiedEdge(i), i);
+			this.setEdge(otherShape.getEdge(i), i);
 		}
 	}
 	
@@ -198,12 +197,21 @@ public class Shape{
 		Shape result = new Shape(shapeToCopy.pointsSize(), shapeToCopy.edgesSize()); 
 		result.copyShape(shapeToCopy);
 		for(int i = 0; i<shapeToCopy.pointsSize(); i++) {
-			result.getPoint(i).getTranslation(t);
+			result.setPoint(i, result.getPoint(i).getTranslation(t));
 		}
-		for(int i = 0; i<shapeToCopy.edgesSize(); i++) {
-			result.getEdge(i).getTranslatedEdge(t);
+		for(int i = 0; i<result.edgesSize()-2; i++) {
+			result.setEdge(new Edge(result.getPoint(i), result.getPoint(i+1)), i);
 		}
+//		result.setEdge(new Edge(result.getPoint(result.pointsSize()-1), result.getPoint(0)), result.pointsSize()-1);
+		result.setEdge(new Edge(result.getPoint(3), result.getPoint(0)), 3);
 		return result;
+	}
+	
+	public double getAngle(Shape shape) {
+		Point centerA = this.makeCenter();
+		Point centerB = shape.makeCenter();
+		double angle = centerA.getAngle(centerB)/2;
+		return angle;
 	}
 	
 	public String toString() {

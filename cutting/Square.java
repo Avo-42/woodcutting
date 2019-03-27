@@ -25,7 +25,7 @@ public class Square extends Shape{
 			this.addEdge(one, 1);
 			this.addEdge(two, 2);
 			this.addEdge(three, 3);
-		}else if(plane == Plane.ZX) {
+		}else if(plane == Plane.XZ) {
 			Point a = new Point(point.getX()+width, point.getY(), point.getZ());
 			Point b = new Point(point.getX(), point.getY(), point.getZ()+width);
 			Point c = new Point(point.getX()+width, point.getY(), point.getZ()+width);
@@ -36,10 +36,10 @@ public class Square extends Shape{
 			Edge one = new Edge(a, b);
 			Edge two = new Edge(b, c);
 			Edge three = new Edge(c, point);
-			this.addEdge(zero, 0);
-			this.addEdge(one, 1);
-			this.addEdge(two, 2);
-			this.addEdge(three, 3);
+			this.setEdge(zero, 0);
+			this.setEdge(one, 1);
+			this.setEdge(two, 2);
+			this.setEdge(three, 3);
 		}else {
 			Point a = new Point(point.getX(), point.getY()+width, point.getZ());
 			Point b = new Point(point.getX(), point.getY(), point.getZ()+width);
@@ -51,10 +51,10 @@ public class Square extends Shape{
 			Edge one = new Edge(a, b);
 			Edge two = new Edge(b, c);
 			Edge three = new Edge(c, point);
-			this.addEdge(zero, 0);
-			this.addEdge(one, 1);
-			this.addEdge(two, 2);
-			this.addEdge(three, 3);
+			this.setEdge(zero, 0);
+			this.setEdge(one, 1);
+			this.setEdge(two, 2);
+			this.setEdge(three, 3);
 		}
 	}
 	
@@ -96,9 +96,9 @@ public class Square extends Shape{
 		Edge edgeB = new Edge(this.getPoint(1), this.getPoint(2));
 		Edge edgeC = new Edge(this.getPoint(2), this.getPoint(3));
 		Edge edgeD = new Edge(this.getPoint(3), this.getPoint(0));
-		this.addEdge(edgeA, 0);
-		this.addEdge(edgeB, 1);
-		this.addEdge(edgeC, 2);
-		this.addEdge(edgeD, 3);
+		this.setEdge(edgeA, 0);
+		this.setEdge(edgeB, 1);
+		this.setEdge(edgeC, 2);
+		this.setEdge(edgeD, 3);
 	}
 }

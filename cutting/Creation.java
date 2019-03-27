@@ -15,6 +15,31 @@ public class Creation {
 	public Creation() {
 	}
 	
+	//gets the information of an edge given the two connected Shapes
+	public String getCut(int ShapeA, int ShapeB) {
+//		Edge edgeA, edgeB;
+		int aNum = 0, bNum=0;
+		for(int i = 0; i < shapes.get(ShapeA).edgesSize(); i++) {
+			for(int j = 0; j < shapes.get(ShapeB).edgesSize(); j++) {
+				Edge a = shapes.get(ShapeA).getEdge(i);
+				Edge b = shapes.get(ShapeA).getEdge(j);
+				if(a.hasOverlap(b)==false) {
+//					edgeA = a;
+//					edgeB = b;
+					aNum = i;
+					bNum = j;
+				}
+			}
+		}
+//		if (edgeA == null) {
+//			return "no connecting edge";
+//		}
+		String result = "Shape A and Shape B are connected by Shape A's edge "+aNum+", and Shape B's edge "+bNum+".\n" ;
+		double angle = shapes.get(ShapeA).getAngle(shapes.get(ShapeB));
+		result = result + " The total angle between the two shapes is " +angle+ ", and half the angle is " +(angle/2)+".";
+		return result;
+	}
+	
 	public Color getColor(Shape shape, Color color){
 		int red=defaultColor.getRed(); 
 		int blue=defaultColor.getBlue();
@@ -74,13 +99,13 @@ public class Creation {
 		if(diag) {
 			Triangle left  = new Triangle(b, a.getEdgePoint(0));
 			Triangle right = new Triangle(a, b.getEdgePoint(1));
-			addShape(left);
-			addShape(right);
+			this.addShape(left);
+			this.addShape(right);
 		} else {
 			Triangle left  = new Triangle(a, b.getEdgePoint(0));
 			Triangle right = new Triangle(b, a.getEdgePoint(1));
-			addShape(left);
-			addShape(right);
+			this.addShape(left);
+			this.addShape(right);
 		}
 	}
 	
@@ -92,9 +117,14 @@ public class Creation {
 		Shape last = Shape.getTranslatedShape(base, translation);
 		last.rotate(plane, angle);
 		this.addShape(last);
-		for (int i = 0; i < base.pointsSize(); i++) {
-			this.makeTwoTriangles(base.getEdge(i), last.getEdge(i), true);
-		}
+//		for (int i = 0; i < temp.pointsSize(); i++) {
+//			System.out.println("made triangle for " + i);
+//			this.makeTwoTriangles(temp.getEdge(i), last.getEdge(i), true);
+//		}
+		this.makeTwoTriangles(temp.getEdge(0), last.getEdge(0), true);
+		this.makeTwoTriangles(temp.getEdge(1), last.getEdge(1), true);
+		this.makeTwoTriangles(temp.getEdge(2), last.getEdge(2), true);
+		this.makeTwoTriangles(temp.getEdge(3), last.getEdge(3), true);
 	}
 	
 	public void makeRotatedCube(Point center, double width, double angle, Plane plane) {
