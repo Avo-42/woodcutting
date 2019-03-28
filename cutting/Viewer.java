@@ -150,8 +150,10 @@ public class Viewer extends JComponent implements MouseMotionListener, MouseList
 	private static Creation makeCreation() {
 		Creation creation = new Creation();
 		addStandardLights(creation);
-		Ngon ngon = new Ngon(7,10, new Point(0,0,0),Plane.XY);
-		creation.makeRotatedCreation(ngon, (2*Math.PI/), (new Point(0,0,4)), Plane.XY);
+		Ngon ngon = new Ngon(5,10, new Point(0,0,0),Plane.XY);
+		creation.makeRotatedCreation(ngon, .8, (new Point(0,0,4)), Plane.XY);
+//		creation.makeRotatedCreation(creation.getShape(1), .8, (new Point(0,0,4)), Plane.XY);
+//		creation.makeRotatedCreation(creation.getShape(13), .8, (new Point(0,0,4)), Plane.XY);
 //		Square square = new Square(new Point(0,0,0), 8, Plane.XY);
 //		creation.addShape(square);
 //		creation.addShape(ngon);
