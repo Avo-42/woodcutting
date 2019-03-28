@@ -118,7 +118,7 @@ public class Creation {
 		last.rotate(plane, angle);
 		this.addShape(last);
 		for (int i = 0; i < temp.pointsSize(); i++) {
-			System.out.println("made triangle for " + i);
+//			System.out.println("made triangle for " + i);
 			this.makeTwoTriangles(temp.getEdge(i), last.getEdge(i), true);
 		}
 //		this.makeTwoTriangles(temp.getEdge(0), last.getEdge(0), true);

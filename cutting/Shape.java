@@ -201,7 +201,7 @@ public class Shape{
 			result.setEdge(new Edge(result.getPoint(i), result.getPoint((i+1) % edgeCount)), i);
 		}
 //		result.setEdge(new Edge(result.getPoint(result.pointsSize()-1), result.getPoint(0)), result.pointsSize()-1);
-		result.setEdge(new Edge(result.getPoint(3), result.getPoint(0)), 3);
+//		result.setEdge(new Edge(result.getPoint(3), result.getPoint(0)), 3);
 		return result;
 	}
 

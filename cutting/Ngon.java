@@ -4,9 +4,9 @@ import java.lang.Math;
 
 public class Ngon extends Shape{
 
-    public Ngon(int pointNum, double sidelength, Point firstPoint,Plane plane){
+    public Ngon(int pointNum, double radius, Point center, Plane plane){
         super(pointNum, pointNum);
-        makeNgon(pointNum, sidelength, firstPoint, plane);
+        makeNgon(pointNum, radius, center, plane);
     }
 
     public void makeNgon(int pointNum, double radius, Point center, Plane plane) {
@@ -20,9 +20,9 @@ public class Ngon extends Shape{
             temp = temp.getTranslation(p2.getScaled(s*radius));
             this.setPoint(i, temp);
         }
-        for(int i = 1; i < pointNum; i++){
-            Edge edge = new Edge(this.getPoint(i-1), this.getPoint(i%pointNum));
-            this.setEdge(edge, i-1);
+        for(int i = 0; i < pointNum; i++){
+            Edge edge = new Edge(this.getPoint(i), this.getPoint((i+1)%pointNum));
+            this.setEdge(edge, i);
         }
     }
 
