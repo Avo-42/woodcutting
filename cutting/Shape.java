@@ -45,7 +45,7 @@ public class Shape{
 	
 	public Shape makeShape(Point[] points, int edgeCount) {
 		Shape a = new Shape(points.length, edgeCount);
-		for (int i = 0; i<=points.length; i++) {
+		for (int i = 0; i<points.length; i++) {
 			a.setPoint(i, points[i]);
 		}
 		for (int i = 1; i <=(edgeCount-1); i ++) {

@@ -180,7 +180,11 @@ public class Point {
 	public Point getTranslation(Point b) {
 		return new Point(this.getX()+b.getX(), this.getY()+b.getY(), this.getZ()+b.getZ());
 	}
-	
+
+	public Point getScaled(double scale){
+		return (new Point(getX()*scale, getY()*scale, getZ()*scale));
+	}
+
 	public Point getDifference(Point a) {
 		return getTranslation(this, -a.getX(), -a.getY(), -a.getZ());
 	}

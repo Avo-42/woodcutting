@@ -96,7 +96,9 @@ public class Creation {
 	public void makeTwoTriangles(Edge a, Edge b, boolean diag) {
 		if(diag) {
 			Triangle left  = new Triangle(b, a.getEdgePoint(0));
+			System.out.println("made left.");
 			Triangle right = new Triangle(a, b.getEdgePoint(1));
+			System.out.println("made right.");
 			this.addShape(left);
 			this.addShape(right);
 		} else {
@@ -115,14 +117,14 @@ public class Creation {
 		Shape last = Shape.getTranslatedShape(base, translation);
 		last.rotate(plane, angle);
 		this.addShape(last);
-//		for (int i = 0; i < temp.pointsSize(); i++) {
-//			System.out.println("made triangle for " + i);
-//			this.makeTwoTriangles(temp.getEdge(i), last.getEdge(i), true);
-//		}
-		this.makeTwoTriangles(temp.getEdge(0), last.getEdge(0), true);
-		this.makeTwoTriangles(temp.getEdge(1), last.getEdge(1), true);
-		this.makeTwoTriangles(temp.getEdge(2), last.getEdge(2), true);
-		this.makeTwoTriangles(temp.getEdge(3), last.getEdge(3), true);
+		for (int i = 0; i < temp.pointsSize(); i++) {
+			System.out.println("made triangle for " + i);
+			this.makeTwoTriangles(temp.getEdge(i), last.getEdge(i), true);
+		}
+//		this.makeTwoTriangles(temp.getEdge(0), last.getEdge(0), true);
+//		this.makeTwoTriangles(temp.getEdge(1), last.getEdge(1), true);
+//		this.makeTwoTriangles(temp.getEdge(2), last.getEdge(2), true);
+//		this.makeTwoTriangles(temp.getEdge(3), last.getEdge(3), true);
 	}
 	
 	public void makeRotatedCube(Point center, double width, double angle, Plane plane) {
